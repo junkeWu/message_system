@@ -1,4 +1,4 @@
-import Login from "../pages/Login";
+import Login from "../pages/login/index";
 import Index from "../pages/admin/dashboard/index";
 import ListMessage from "../pages/admin/message/ListMessage";
 import EditMessage from "../pages/admin/message/EditMessage";
