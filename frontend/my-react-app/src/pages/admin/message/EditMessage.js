@@ -7,6 +7,7 @@ function EditMessage(props){
           console.log('Success:', values);
           // TODO
           post("api/v1/admin/message",values).then(res=>{
+          props.history.push("/admin/messages")
           console.log(res)
           })
         };

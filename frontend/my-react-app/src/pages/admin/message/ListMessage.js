@@ -26,16 +26,31 @@ import { get} from '../../../request/request'
 function ListMessage(props){
 
     const [dataSource, setDataSource] = useState([])
+    const [total, setTotal] = useState(0)
     useEffect(() => {
-          get("/api/v1/admin/messages",{
+          get("api/v1/admin/messages",{
             page: 1,
-            pageSize: 10000000
+            pageSize: 5
           }).then(res=>{
-              console.log(res)
-             setDataSource(res.data.lists)
+            console.log(res)
+            setDataSource(res.data.lists)
+            setTotal(res.data.totalCount)
           })
         
     }, [])
+    const loadData = page => {
+        console.log(page)
+        get("api/v1/admin/messages",
+        {
+            page: page,
+            pageSize: 5
+        })
+        .then(res=>{
+            console.log(res)
+            setDataSource(res.data.lists)
+            setTotal(res.data.totalCount)
+          })
+    }
     const columns = [{
         title: '序号',
         key:    'id',
@@ -66,7 +81,11 @@ function ListMessage(props){
             </Button>
         }
      >
-         <Table rowkey="id" columns={columns} bordered dataSource={dataSource}></Table>
+         <Table rowkey="id" 
+         pagination={{total, defaultPageSize:5, onChange:loadData}}
+         columns={columns} 
+         bordered 
+         dataSource={dataSource}></Table>
     </Card>
    );
 }

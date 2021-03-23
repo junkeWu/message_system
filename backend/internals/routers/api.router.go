@@ -15,8 +15,8 @@ func ApiV1(engine *gin.Engine) {
 		// grom 模型操作示例
 		g.POST("/message", v1.MessageAdd)
 		g.GET("/messages", v1.MessagesQuery)
-		// g.GET("/demo/gorm/user/:userId", demo.UserDetail)
-		// g.DELETE("/demo/gorm/user/:userId", demo.UserDel)
-		// g.PUT("/demo/gorm/user/:userId", demo.UserUpdate)
+		g.GET("/message/:id", v1.MessageDetail)
+		g.DELETE("/message/:id", v1.MessageDel)
+		g.PUT("/message/:id", v1.MessageUpdate)
 	}
 }
