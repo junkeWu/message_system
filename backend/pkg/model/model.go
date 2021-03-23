@@ -13,3 +13,16 @@ type Message struct {
 func (m Message) TableName() string {
 	return "message"
 }
+
+type User struct {
+	ID        	int       `gorm:"column:id;primary_key" json:"id"`
+	Avator   	string    `form:"avator"   json:"name"   gorm:"comment:'头像'"`
+	email       string    `form:"email"    json:"name"   gorm:"comment:'email'"`
+	Name      	string    `form:"name"     json:"name"   gorm:"comment:'姓名'"`
+	Username    string    `form:"username" json:"username" gorm:"comment:'账户名'"`
+	Password    string    `form:"password" json:"password" gorm:"comment:'密码'"`
+}
+
+func (u User) TableName() string {
+	return "user"
+}
