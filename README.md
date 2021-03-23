@@ -80,7 +80,10 @@ CREATE TABLE user(
 ```sh
 # 运行
 后端运行
-根目录下 make dev || go run main.go
+先运行数据库docker 
+docker-compose -f pg-docker-compose.yaml up -d
+再根目录下 make dev || go run main.go
+
 前端运行
 message_system/frontend/my-react-app/src目录下  
 先yarn 导入相关依赖 
