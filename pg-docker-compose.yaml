@@ -1,0 +1,18 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+
+  pgsql:
+    image: postgres:12
+    restart: always
+    privileged: true
+    ports:
+      - '5433:5432'
+    environment:
+      POSTGRES_USER: 'pg-user-echo'
+      POSTGRES_DB: 'pg-db-echo'
+      POSTGRES_PASSWORD: echo
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - /Users/ke/docker/postgresql/data:/var/lib/postgresql/data/pgdata

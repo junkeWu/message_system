@@ -1,34 +1,48 @@
-import React from 'react'
+import React, {useEffect,useState} from 'react'
 import { Card,Table,Button } from "antd";
-const dataSource = [
-    {
-        id: 1,
-        name: 'echo',
-        title: '王者王者王者王者王者王者王者王者王者王者',
-        content: '晚上一起打王者晚上一起打王者晚上一起打王者晚上一起打王者晚上一起打王者晚上一起打王者晚上一起打王者',
-        time:   '2021-03-19'
-    },{
-        id: 2,
-        name: 'echo',
-        title: '王者',
-        content: '晚上一起打王者',
-        time:   '2021-03-19'
-    },{
-        id: 3,
-        name: 'echo',
-        title: '王者',
-        content: '晚上一起打王者',
-        time:   '2021-03-19'
-    }
-]
-function ListMessage(props){
+import { get} from '../../../request/request'
+// const dataSource = [
+//     {
+//         id: 1,
+//         name: 'echo',
+//         title: '王者王者王者王者王者王者王者王者王者王者',
+//         content: '晚上一起打王者晚上一起打王者晚上一起打王者晚上一起打王者晚上一起打王者晚上一起打王者晚上一起打王者',
+//         time:   '2021-03-19'
+//     },{
+//         id: 2,
+//         name: 'echo',
+//         title: '王者',
+//         content: '晚上一起打王者',
+//         time:   '2021-03-19'
+//     },{
+//         id: 3,
+//         name: 'echo',
+//         title: '王者',
+//         content: '晚上一起打王者',
+//         time:   '2021-03-19'
+//     }
     
+// ]
+function ListMessage(props){
+
+    const [dataSource, setDataSource] = useState([])
+    useEffect(() => {
+          get("/api/v1/admin/messages",{
+            page: 1,
+            pageSize: 10000000
+          }).then(res=>{
+              console.log(res)
+             setDataSource(res.data.lists)
+          })
+        
+    }, [])
     const columns = [{
         title: '序号',
         key:    'id',
         width:  80,
         align:  'center',
-        render: (txt, record, index) => index+1
+        // render: (txt, record, index) => index+1
+        dataIndex: 'id'
     },{
         title: '名字',
         dataIndex: 'name'
@@ -40,7 +54,7 @@ function ListMessage(props){
         dataIndex: 'content'
     },{
         title: '时间',
-        dataIndex: 'time'
+        dataIndex: 'create_time'
     }
 ]
     return (
@@ -52,7 +66,7 @@ function ListMessage(props){
             </Button>
         }
      >
-         <Table columns={columns} bordered dataSource={dataSource}></Table>
+         <Table rowkey="id" columns={columns} bordered dataSource={dataSource}></Table>
     </Card>
    );
 }

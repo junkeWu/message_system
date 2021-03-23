@@ -17,7 +17,7 @@ ReactDOM.render(
       {mainRouter.map(route=>{
         return <Route key={route.page} {...route} />;
       })}
-      
+      <Redirect to="/admin" form="/"></Redirect>
       <Redirect to = '/404'/> 
     </Switch>
   </Router>,document.getElementById('root')

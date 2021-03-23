@@ -1,11 +1,14 @@
 import React from 'react'
 // import {Form, Card, Input, Button} from 'antd'
 import { Form, Input, Button,DatePicker, message } from 'antd';
-
+import { post } from '../../../request/request';
 function EditMessage(props){
     const onFinish = (values: any) => {
           console.log('Success:', values);
           // TODO
+          post("api/v1/admin/message",values).then(res=>{
+          console.log(res)
+          })
         };
       
     const onFinishFailed = (errorInfo: any) => {
@@ -57,7 +60,7 @@ function EditMessage(props){
       </Form.Item>
       <Form.Item
         label="时间"
-        name="time"
+        name="create_time"
         rules={[{ required: true, message: 'Please input time!' }]}
       >
         <DatePicker />
