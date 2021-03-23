@@ -11,7 +11,12 @@ const { Header, Content, Sider } = Layout;
 function index(props) {
 
   const popMenu = (
-    <Menu>
+
+    <Menu onClick={(p)=>{
+      if(p.key === 'logOut'){
+        props.history.push("/login")
+      }
+    }}>
        <Menu.Item key="logOut" >退出</Menu.Item>
        <Menu.Item key="setting" >设置</Menu.Item>
     </Menu>
@@ -28,7 +33,7 @@ function index(props) {
           <Dropdown overlay={popMenu}>
             <div>
               <Avatar>U</Avatar>
-              <span>操作</span>
+              {/* <span>操作</span>  */}
               <Icon type="down"></Icon>
             </div>
           </Dropdown>

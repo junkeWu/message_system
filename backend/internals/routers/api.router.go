@@ -18,5 +18,11 @@ func ApiV1(engine *gin.Engine) {
 		g.GET("/message/:id", v1.MessageDetail)
 		g.DELETE("/message/:id", v1.MessageDel)
 		g.PUT("/message/:id", v1.MessageUpdate)
+
+		g.POST("/user", v1.UserAdd)
+		g.GET("/users", v1.UserQuery)
+		g.GET("/user/:id", v1.UserDetail)
+		g.DELETE("/user/:id", v1.UserDel)
+		g.PUT("/user/:id", v1.UserUpdate)
 	}
 }

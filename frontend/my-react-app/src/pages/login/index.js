@@ -1,11 +1,16 @@
-import { Form, Button, Input, Card, Checkbox     } from "antd";
+import { Form, Button, Input, Card, Checkbox, message     } from "antd";
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import React from 'react';
 import  './style.css';
 
-function Login(){
+function Login(props){
     const onFinish = (values: any) => {
         console.log('Received values of form: ', values);
+        if (values.username === 'echo' && values.password === '123456') {
+            props.history.push("/admin/messages")
+        } else {
+            message.error("用户名或者密码错误")
+        }
       };
    return (
     <Card title="网站留言系统" className="login-form">   

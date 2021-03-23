@@ -80,7 +80,7 @@ func UserUpdate(c *gin.Context) {
 // {"code":"200","message":"success","data":{"id":10,"name":"testName","title":"testTitle","content":"hello","create_time":"0001-01-01T00:00:00Z"}}
 func UserDetail(c *gin.Context) {
 	var user model.User
-	id := c.Param("id")
-	gormsql.DB.Where("id = ?", id).First(&user)
+	id := c.Param("username")
+	gormsql.DB.Where("username = ?", id).First(&user)
 	c.JSON(http.StatusOK, util.NewApiJsonResult("200", "success").Simple(user))
 }
