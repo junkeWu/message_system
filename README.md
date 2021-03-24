@@ -80,7 +80,7 @@ CREATE TABLE user(
 ```sh
 # 运行
 后端运行
-构建好docker容器
+构建好docker容器. 	[文档]=>> https://blog.csdn.net/lxh_worldpeace/article/details/106954218
 先运行数据库docker 
 docker-compose -f pg-docker-compose.yaml up -d
 再根目录下 make dev || go run main.go
